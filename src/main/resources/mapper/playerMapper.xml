@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.mister.dao.PlayerDao">
+    <select id="findByGroupId" resultType="cn.mister.entity.Player">
+        select * from player where group_id = #{groupId} order by score desc
+    </select>
+
+    <select id="findById" resultType="cn.mister.entity.Player">
+        select * from player where id = #{id} for update
+    </select>
+
+    <select id="findAll" resultType="cn.mister.entity.Player">
+        select * from player
+    </select>
+
+    <update id="update" parameterType="cn.mister.entity.Player">
+        update player set
+        <trim suffixOverrides=",">
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="goal != null">
+                goal = #{goal},
+            </if>
+            <if test="goalDifference != null">
+                goal_difference = #{goalDifference},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+</mapper>

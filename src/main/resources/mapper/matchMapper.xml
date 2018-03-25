@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.mister.dao.MatchDao">
+    <select id="findAll" resultType="cn.mister.entity.Match">
+        select * from `match` order by created_time desc
+    </select>
+
+    <select id="findById" resultType="cn.mister.entity.Match">
+        select * from `match` where id = #{id} for update
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from `match` where id = #{id}
+    </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.mister.entity.Match">
+        insert into `match`(result,created_time) values (#{result},#{createdTime})
+    </insert>
+
+</mapper>

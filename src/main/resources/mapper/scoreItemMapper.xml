@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.mister.dao.ScoreItemDao">
+    <select id="find" resultType="cn.mister.entity.ScoreItem">
+        select * from `score_item` where match_id = #{matchId}
+    </select>
+
+
+    <insert id="insert" parameterType="cn.mister.entity.ScoreItem">
+        insert into `score_item`(player_id,match_id,score,goal,goal_difference) values (#{playerId},#{matchId},#{score},#{goal},#{goalDifference})
+    </insert>
+
+</mapper>
